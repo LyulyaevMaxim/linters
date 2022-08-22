@@ -1,0 +1,4 @@
+{
+  "extends": "@lyulyaev-maxim/typescript-config-crazy-strict",
+  "include": ["src"]
+}

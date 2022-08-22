@@ -16,4 +16,4 @@ This repository used as monorepo, each package has its own `README` and document
 * [typescript-config-crazy-strict](./typescript-config-crazy-strict)
 * [prettier-config](./prettier-config)
 
-You can find example of using [here](./styleguide-example).
+You can find examples of using [here](./examples).
