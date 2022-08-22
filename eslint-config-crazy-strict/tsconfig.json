@@ -47,5 +47,5 @@
     "noUnusedParameters": false //it should be checked only for prod build via linters
     /* additional strict rules: end */
   },
-  "include": ["configs/linters/", "src"]
+  "include": ["src"]
 }
