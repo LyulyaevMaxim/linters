@@ -9,6 +9,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lyulyaev-maxim/eslint-config-crazy-strict@workspace:."
   dependencies:
+    "@lyulyaev-maxim/typescript-config-crazy-strict": ^0.0.0
     eslint-import-resolver-typescript: ^2.5.0
     eslint-plugin-import: ^2.25.4
     eslint-plugin-react: ^7.28.0
@@ -22,6 +23,15 @@ __metadata:
     typescript: ^4.5.5
   languageName: unknown
   linkType: soft
+
+"@lyulyaev-maxim/typescript-config-crazy-strict@npm:^0.0.0":
+  version: 0.0.0
+  resolution: "@lyulyaev-maxim/typescript-config-crazy-strict@npm:0.0.0"
+  peerDependencies:
+    typescript: ^4.5.5
+  checksum: 845d9beebd864762e7e44b7904528281102ebaea4926793a10175e9860845ed4e3e48bd8c3fdce55f3dec9cd8afcb9fac6a9096fc497e6c1bbbc31085b109313
+  languageName: node
+  linkType: hard
 
 "@types/json5@npm:^0.0.29":
   version: 0.0.29
