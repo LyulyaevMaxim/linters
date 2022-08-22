@@ -4,8 +4,5 @@
   "author": "Lyulyaev Maxim",
   "version": "1.0.0",
   "description": "Custom configurations of linters on projects with TypeScript and React",
-  "workspaces": [
-    "./styleguide-example"
-  ],
   "prettier": "@lyulyaev-maxim/prettier-config"
 }
