@@ -1,0 +1,24 @@
+{
+  "name": "@lyulyaev-maxim/typescript-config-crazy-strict",
+  "author": "Lyulyaev Maxim",
+  "version": "0.0.1",
+  "description": "Manual configuration for Typescript on projects with TypeScript and React",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LyulyaevMaxim/linters.git"
+  },
+  "packageManager": "yarn@3.2.2",
+  "main": "tsconfig.json",
+  "scripts": {
+    "publish": "yarn npm publish --access public"
+  },
+  "peerDependencies": {
+    "typescript": "^4.5.5"
+  },
+  "keywords": [
+    "tsconfig",
+    "styleguide",
+    "code style"
+  ]
+}
