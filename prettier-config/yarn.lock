@@ -4,8 +4,10 @@
 __metadata:
   version: 6
 
-"@lyulyaev-maxim/linters@workspace:.":
+"@lyulyaev-maxim/prettier-config@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@lyulyaev-maxim/linters@workspace:."
+  resolution: "@lyulyaev-maxim/prettier-config@workspace:."
+  peerDependencies:
+    prettier: ^2.5.1
   languageName: unknown
   linkType: soft
