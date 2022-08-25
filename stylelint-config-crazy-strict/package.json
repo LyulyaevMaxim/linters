@@ -1,0 +1,27 @@
+{
+  "name": "@lyulyaev-maxim/stylelint-config-crazy-strict",
+  "author": "Lyulyaev Maxim",
+  "version": "0.0.0",
+  "description": "Manual configuration of Stylelint on projects with TypeScript and React",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LyulyaevMaxim/linters.git"
+  },
+  "main": "stylelint.config.js",
+  "scripts": {
+    "publish": "yarn npm publish --access public"
+  },
+  "dependencies": {
+    "postcss": "^8.0.0",
+    "postcss-scss": "^4.0.0",
+    "stylelint": "^14.0.0-0",
+    "stylelint-processor-styled-components": "^1.0.0"
+  },
+  "packageManager": "yarn@3.2.2",
+  "keywords": [
+    "stylelintconfig",
+    "styleguide",
+    "code style"
+  ]
+}
