@@ -3,6 +3,7 @@ dist
 build
 .idea
 .eslintcache
+.stylelintcache
 *-error.log
 
 .yarn/*

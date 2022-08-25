@@ -17,7 +17,7 @@
    ```
 2. Use commands to check your files:
    ```
-   "css:check": "cross-env CI=true stylelint --quiet --cache src/",
+   "css:check": "cross-env CI=true yarn node ./node_modules/stylelint/bin/stylelint --quiet --cache src/",
    "css:fix": "yarn css:check --fix src/**/*.{css,scss}",
    ```
 
