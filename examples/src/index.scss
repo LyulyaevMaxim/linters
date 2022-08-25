@@ -1,0 +1,63 @@
+.annotation-no-unknown {
+  color: green !imprtant;
+}
+
+.color-no-invalid-hex {
+  color: #00;
+}
+
+.font-family-no-duplicate-names {
+  font-family: 'Times', 'Times', serif;
+}
+
+.font-family-no-missing-generic-family-keyword {
+  font-family: 'Helvetica', 'Arial';
+}
+
+.named-grid-areas-no-invalid {
+  grid-template-areas:
+    'a a'
+    'b b b';
+}
+
+.function-calc-no-unspaced-operator {
+  top: calc(1px + 2px);
+}
+
+.string-no-newline {
+  content: 'first
+  second';
+}
+
+.block-no-empty {
+}
+
+.alpha-value-notation {
+  opacity: 0.5;
+}
+
+.color-hex-alpha {
+  color: #ffffffaa;
+}
+
+.color-named {
+  color: #000000;
+}
+
+.function-url-quotes {
+  background: url('x.jpg');
+}
+
+.number-max-precision {
+  top: 3.24567px;
+}
+
+.value-no-vendor-prefix {
+  //display: -webkit-flex;
+  display: flex;
+}
+
+.declaration-property-unit-allowed-list {
+  font-size: 16px;
+  line-height: 12px;
+}
