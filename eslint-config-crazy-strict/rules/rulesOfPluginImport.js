@@ -1,4 +1,4 @@
-const isCI = Boolean(process.env.CI)
+const { isCI, fixable } = require('../utils')
 
 module.exports = {
   rulesOfPluginImport,
@@ -46,7 +46,7 @@ function rulesOfPluginImport() {
   }
 
   const styleGuide = {
-    'import/first': isCI ? 'error' : 0,
+    'import/first': fixable,
     'import/exports-last': 0, // replaced to 'import/group-exports'
     'import/no-duplicates': 0, // replaced to '@typescript-eslint/no-duplicate-imports'
     'import/no-namespace': 0,
@@ -68,7 +68,16 @@ function rulesOfPluginImport() {
     'import/no-default-export': 'error',
     'import/no-named-export': 0,
     'import/no-anonymous-default-export': 0, // we already throw error for any export by default ('import/no-default-export')
-    'import/group-exports': 'error',
+    /**
+     * We can use 'Structure' tab of IDEA to see which variables are exporting.
+     * But if we haven't code-style limitation on logic of adding 'export' keyword (do it around creation variable or some later),
+     * then it's not enough clearly which variables are our API for external using.
+     *
+     * Unfortunately, it doesn't work with 'namespaces' of TypeScript correctly but because we use them actively now disabling rules is enough noisy.
+     *
+     * However, we can enable this rule periodically to check our exports and make them by one way.
+     */
+    'import/group-exports': 'warn',
     'import/dynamic-import-chunkname': 'error',
   }
 
