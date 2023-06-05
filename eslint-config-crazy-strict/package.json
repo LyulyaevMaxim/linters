@@ -1,7 +1,7 @@
 {
   "name": "@lyulyaev-maxim/eslint-config-crazy-strict",
   "author": "Lyulyaev Maxim",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Manual configuration for Eslint on projects with JavaScript and TypeScript",
   "main": ".eslintrc.js",
   "scripts": {
