@@ -21,7 +21,7 @@
     "react-dom": "17.0.2"
   },
   "devDependencies": {
-    "@lyulyaev-maxim/eslint-config-crazy-strict": "0.1.1",
+    "@lyulyaev-maxim/eslint-config-crazy-strict": "0.1.2",
     "@lyulyaev-maxim/eslint-config-react-crazy-strict": "^0.0.1",
     "@lyulyaev-maxim/prettier-config": "0.0.0",
     "@lyulyaev-maxim/stylelint-config-crazy-strict": "0.0.0",
@@ -34,6 +34,6 @@
     "cross-env": "7.0.3",
     "eslint": "8.42.0",
     "prettier": "2.7.1",
-    "typescript": "4.5.5"
+    "typescript": "5.0.4"
   }
 }

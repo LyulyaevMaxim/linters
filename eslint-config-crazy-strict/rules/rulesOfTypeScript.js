@@ -1,4 +1,4 @@
-const isCI = Boolean(process.env.CI)
+const { isCI, canBeFixedLater } = require('../utils')
 
 module.exports = {
   rulesOfTypeScript,
@@ -9,7 +9,7 @@ function rulesOfTypeScript() {
     '@typescript-eslint/adjacent-overload-signatures': 'error',
     '@typescript-eslint/array-type': ['error', { default: 'generic' }],
     '@typescript-eslint/await-thenable': 'error',
-    '@typescript-eslint/ban-ts-comment': ['error', { 'ts-ignore': 'allow-with-description' }],
+    '@typescript-eslint/ban-ts-comment': [canBeFixedLater, { 'ts-expect-error': 'allow-with-description' }],
     '@typescript-eslint/ban-tslint-comment': 0, //deprecated
     '@typescript-eslint/ban-types': 'error',
     '@typescript-eslint/class-literal-property-style': ['error', 'getters'],
@@ -37,38 +37,33 @@ function rulesOfTypeScript() {
       },
     ],
     '@typescript-eslint/explicit-member-accessibility': [
-      'error', //TODO: maybe it decreased readability
+      'error',
       {
-        accessibility: 'explicit',
-        overrides: {
-          constructors: 'no-public',
-          accessors: 'explicit',
-          parameterProperties: 'explicit',
-          methods: 'explicit',
-          properties: 'explicit',
-        },
+        accessibility: 'no-public',
         ignoredMethodNames: ['render'],
       },
     ],
-    '@typescript-eslint/explicit-module-boundary-types': [
-      'error',
-      {
-        allowArgumentsExplicitlyTypedAsAny: false,
-        allowDirectConstAssertionInArrowFunctions: false,
-        allowHigherOrderFunctions: false,
-        allowTypedFunctionExpressions: false,
-      },
-    ],
+    '@typescript-eslint/explicit-module-boundary-types': 0, // '@typescript-eslint/explicit-function-return-type' already covers these cases
     '@typescript-eslint/member-delimiter-style': 0, // just code formatting
     '@typescript-eslint/member-ordering': 0, //TODO: https://typescript-eslint.io/rules/member-ordering
     '@typescript-eslint/method-signature-style': ['error', 'property'],
-    '@typescript-eslint/naming-convention': 0, //TODO: https://typescript-eslint.io/rules/naming-convention
+    //TODO: https://typescript-eslint.io/rules/naming-convention
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        selector: 'variable',
+        types: ['boolean'],
+        format: ['PascalCase'],
+        prefix: ['is', 'should', 'has', 'can', 'did', 'will'],
+      },
+    ],
     '@typescript-eslint/no-base-to-string': 'error',
     '@typescript-eslint/no-confusing-non-null-assertion': 'error',
     '@typescript-eslint/no-confusing-void-expression': [
       'error',
       { ignoreArrowShorthand: false, ignoreVoidOperator: false },
     ],
+    '@typescript-eslint/no-duplicate-enum-values': 'error',
     '@typescript-eslint/no-dynamic-delete': 'error',
     '@typescript-eslint/no-empty-interface': [
       'error',
@@ -80,12 +75,12 @@ function rulesOfTypeScript() {
       'error',
       {
         fixToUnknown: true,
-        ignoreRestArgs: false,
+        ignoreRestArgs: true,
       },
     ],
     '@typescript-eslint/no-extra-non-null-assertion': 'error',
     '@typescript-eslint/no-extraneous-class': [
-      'error',
+      canBeFixedLater,
       {
         allowConstructorOnly: false,
         allowEmpty: false,
@@ -101,11 +96,12 @@ function rulesOfTypeScript() {
       },
     ],
     '@typescript-eslint/no-for-in-array': 'error',
+    '@typescript-eslint/no-import-type-side-effects': 'error',
     '@typescript-eslint/no-inferrable-types': 0, //it decreases safe
     '@typescript-eslint/no-invalid-void-type': [
       'error',
       {
-        allowInGenericTypeArguments: false,
+        allowInGenericTypeArguments: true,
         allowAsThisParameter: false,
       },
     ],
@@ -129,18 +125,20 @@ function rulesOfTypeScript() {
         },*/,
       },
     ],
+    '@typescript-eslint/no-mixed-enums': 'error',
     '@typescript-eslint/no-namespace': 0, // it's useful functionality
     '@typescript-eslint/no-non-null-asserted-nullish-coalescing': 'error',
     '@typescript-eslint/no-non-null-asserted-optional-chain': 'error',
     '@typescript-eslint/no-non-null-assertion': 'warn',
     '@typescript-eslint/no-parameter-properties': 'error',
-    // '@typescript-eslint/no-redundant-type-constituents': 'error', //FIXME: was not found
+    '@typescript-eslint/no-redundant-type-constituents': 'error',
     '@typescript-eslint/no-require-imports': 0, // it's useful functionality
+    /** 'unicorn/no-this-assignment' has better description **/
     '@typescript-eslint/no-this-alias': [
       'error',
       {
         allowDestructuring: true,
-        allowedNames: ['self'],
+        allowedNames: [],
       },
     ],
     '@typescript-eslint/no-type-alias': 0, //we use '@typescript-eslint/consistent-type-definitions' with 'type' instead of 'interface' by default
@@ -165,10 +163,13 @@ function rulesOfTypeScript() {
     '@typescript-eslint/no-unsafe-argument': 'error',
     '@typescript-eslint/no-unsafe-assignment': 'error',
     '@typescript-eslint/no-unsafe-call': 'error',
+    '@typescript-eslint/no-unsafe-declaration-merging': 'error',
     '@typescript-eslint/no-unsafe-member-access': 'error',
     '@typescript-eslint/no-unsafe-return': 'error',
+    '@typescript-eslint/no-useless-empty-export': canBeFixedLater,
     '@typescript-eslint/no-var-requires': 0, //it seems as copy '@typescript-eslint/no-require-imports'
     '@typescript-eslint/non-nullable-type-assertion-style': 'error',
+    '@typescript-eslint/parameter-properties': 0, // TODO
     '@typescript-eslint/prefer-as-const': 'error',
     '@typescript-eslint/prefer-enum-initializers': 'error',
     '@typescript-eslint/prefer-for-of': 'error',
@@ -183,9 +184,14 @@ function rulesOfTypeScript() {
         ignoreMixedLogicalExpressions: false,
       },
     ],
-    '@typescript-eslint/prefer-optional-chain': 'error',
+    /**
+     * The optional chain operator is much safer than relying upon logical AND operator chaining &&; which chains on any truthy value
+     * We don't need it because use explicit checks by '@typescript-eslint/strict-boolean-expressions'
+     */
+    '@typescript-eslint/prefer-optional-chain': 0,
     '@typescript-eslint/prefer-readonly': ['error', { onlyInlineLambdas: false }],
-    '@typescript-eslint/prefer-readonly-parameter-types': 0 /* FIXME: it works with 'readonly type[]` but throw error on ReadonlyArray<type>
+    '@typescript-eslint/prefer-readonly-parameter-types': 0 /*
+     //FIXME: it works with 'readonly type[]` but throw error on ReadonlyArray<type>
       [
       'error',
       { checkParameterProperties: true, ignoreInferredTypes: true, treatMethodsAsReadonly: false },
@@ -221,11 +227,28 @@ function rulesOfTypeScript() {
     '@typescript-eslint/strict-boolean-expressions': [
       'error',
       {
-        allowString: true,
+        allowString: false,
+        /**
+         * It requires checking "isNaN" even for "arr.length"
+         */
         allowNumber: true,
+        /**
+         * It's safe because objects, functions and symbols don't have falsy values
+         */
         allowNullableObject: true,
-        allowAny: true, //it isn't safe
-        allowNullableBoolean: false,
+        allowAny: false,
+        /**
+         * It's UNSAFE, but, probably, it's degrade readability more than improve quality
+         *
+         * @example
+         * E.g., 'a' and 'b' optional params:
+         * if (!props.a && props.b)
+         * =>
+         * if ((props.a === undefined || !props.a) && (props.b !== undefined && props.b))
+         * if (!Boolean(props.a) && Boolean(props.b)) // conflicts with no-extra-boolean-cast
+         * if (props.a !== true && props.b === true) // conflicts with 'no-unnecessary-boolean-literal-compare'
+         */
+        allowNullableBoolean: true,
         allowNullableString: false,
         allowNullableNumber: false,
         allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing: false,
@@ -234,7 +257,7 @@ function rulesOfTypeScript() {
     '@typescript-eslint/switch-exhaustiveness-check': 'error',
     '@typescript-eslint/triple-slash-reference': 'error',
     '@typescript-eslint/type-annotation-spacing': 0, //it's just code formatting
-    '@typescript-eslint/typedef': 0, //TODO: maybe will enable later
+    '@typescript-eslint/typedef': 'error',
     '@typescript-eslint/unbound-method': [
       'error',
       {
@@ -258,12 +281,7 @@ function rulesOfTypeScript() {
     '@typescript-eslint/no-array-constructor': 'error',
     '@typescript-eslint/no-dupe-class-members': 'error',
     '@typescript-eslint/no-duplicate-imports': 'error',
-    '@typescript-eslint/no-empty-function': [
-      'error',
-      {
-        allow: [],
-      },
-    ],
+    '@typescript-eslint/no-empty-function': ['error'],
     '@typescript-eslint/no-extra-parens': 0, //it's just code formatting
     '@typescript-eslint/no-extra-semi': 0, //it's just code formatting
     '@typescript-eslint/no-implied-eval': 'error',
@@ -271,7 +289,7 @@ function rulesOfTypeScript() {
     '@typescript-eslint/no-loop-func': 'error',
     '@typescript-eslint/no-loss-of-precision': 'error',
     '@typescript-eslint/no-magic-numbers': [
-      'error',
+      'warn',
       {
         ignoreArrayIndexes: true,
         ignoreTypeIndexes: true,
@@ -287,7 +305,7 @@ function rulesOfTypeScript() {
       {
         builtinGlobals: true,
         hoist: 'functions',
-        // FIXME: ignoreOnInitialization: true
+        ignoreOnInitialization: true,
         ignoreTypeValueShadow: false, //it's ugly
         ignoreFunctionTypeParameterNameValueShadow: true,
       },
@@ -303,14 +321,14 @@ function rulesOfTypeScript() {
       'error',
       { enforceForJSX: true, allowShortCircuit: false, allowTernary: false },
     ],
-    '@typescript-eslint/no-unused-vars': isCI
-      ? ['error', { vars: 'all', args: 'all', ignoreRestSiblings: false, caughtErrors: 'all' }]
-      : 0,
+    '@typescript-eslint/no-unused-vars': [
+      canBeFixedLater,
+      { vars: 'all', args: 'all', ignoreRestSiblings: false, caughtErrors: 'all', argsIgnorePattern: '^_' },
+    ],
     '@typescript-eslint/no-use-before-define': [
       'error',
       { functions: false, classes: true, variables: true, enums: true, typedefs: true, ignoreTypeReferences: true },
     ],
-    // '@typescript-eslint/no-useless-empty-export': 'error', //FIXME: Definition was not found
     '@typescript-eslint/no-useless-constructor': 'error',
     '@typescript-eslint/object-curly-spacing': 0, //just code formatting
     '@typescript-eslint/padding-line-between-statements': 0, //just code formatting
