@@ -30,5 +30,6 @@ But fixing for these rules in during development may be annoying, so I to enable
 * [ESLint](https://eslint.org/docs/rules/)
 * [TypeScript-ESLint](https://typescript-eslint.io/rules/)
 * [TSConfig](https://www.typescriptlang.org/tsconfig)
+* [eslint-plugin-unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn)
 * [eslint-plugin-sonarjs](https://github.com/SonarSource/eslint-plugin-sonarjs)
 * [eslint-plugin-import](https://github.com/import-js/eslint-plugin-import)

@@ -5,7 +5,7 @@ module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
   env: {
-    es2021: true, //TODO: change to es2022 after ESLint will updated
+    es2022: true,
     browser: true,
     node: true,
     commonjs: true,
