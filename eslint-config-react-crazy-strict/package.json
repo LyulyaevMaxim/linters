@@ -1,15 +1,15 @@
 {
   "name": "@lyulyaev-maxim/eslint-config-react-crazy-strict",
   "author": "Lyulyaev Maxim",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Manual configuration for Eslint on projects with React",
   "main": ".eslintrc.js",
   "scripts": {
     "publish": "yarn npm publish --access public"
   },
   "dependencies": {
-    "eslint-plugin-react": "^7.28.0",
-    "eslint-plugin-react-hooks": "^4.3.0"
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0"
   },
   "peerDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.10.0",

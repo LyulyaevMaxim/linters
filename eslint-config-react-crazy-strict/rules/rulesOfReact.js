@@ -1,5 +1,3 @@
-const isCI = Boolean(process.env.CI)
-
 module.exports = {
   rulesOfReact,
 }
@@ -33,7 +31,7 @@ function rulesOfReact() {
         ],
       },
     ],
-    'react/forbid-elements': 0, //TODO: I haven't ideas yet which names are wrong
+    'react/forbid-elements': 0, // I haven't ideas yet which names are wrong
     'react/forbid-foreign-prop-types': 0, // we don't use PropTypes
     'react/forbid-prop-types': 0, // we don't use PropTypes
     'react/function-component-definition': [
@@ -43,8 +41,8 @@ function rulesOfReact() {
         unnamedComponents: ['function-expression'],
       },
     ],
-    'react/hook-use-state': 0, // FIXME: Definition for this rule wasn't found: 'error',
-    'react/iframe-missing-sandbox': 0, // FIXME: Definition for this rule wasn't found: 'error',
+    'react/hook-use-state': ['error', { allowDestructuredState: false }],
+    'react/iframe-missing-sandbox': 'error',
     'react/no-access-state-in-setstate': 'error',
     'react/no-adjacent-inline-elements': 0, // just code formatting
     'react/no-array-index-key': 'error',
@@ -61,6 +59,7 @@ function rulesOfReact() {
     'react/no-is-mounted': 0, // rule 'react/no-deprecated' should check it
     'react/no-multi-comp': 0, // we shouldn't create new file on every primitive component
     'react/no-namespace': 0, // useless
+    'react/no-object-type-as-default-prop': 'error',
     'react/no-redundant-should-component-update': 'error',
     'react/no-render-return-value': 'error',
     'react/no-set-state': 0,
@@ -72,7 +71,7 @@ function rulesOfReact() {
     'react/no-unsafe': ['error', { checkAliases: true }],
     'react/no-unstable-nested-components': ['error', { allowAsProps: false }],
     'react/no-unused-class-component-methods': 'error',
-    'react/no-unused-prop-types': 'error', //FIXME: it rule triggers wrong sometimes; I keep it as enabled until errors a few
+    'react/no-unused-prop-types': 'error',
     'react/no-unused-state': 'error',
     'react/no-will-update-set-state': ['error', 'disallow-in-func'],
     'react/prefer-es6-class': 0, //probably, it'll more actual prefer function component instead of any class;
@@ -144,7 +143,7 @@ function rulesOfReact() {
       {
         props: 'ignore',
         children: 'never',
-        // propElementValues: 'always', //FIXME: doesn't work
+        propElementValues: 'always',
       },
     ],
     'react/jsx-curly-newline': 0, // just code formatting
@@ -158,9 +157,13 @@ function rulesOfReact() {
     'react/jsx-indent-props': 0, // just code formatting
     'react/jsx-key': [
       'error',
-      { checkFragmentShorthand: true, checkKeyMustBeforeSpread: true /* FIXME: doesn't work: warnOnDuplicates: true*/ },
+      {
+        checkFragmentShorthand: true,
+        checkKeyMustBeforeSpread: true,
+        warnOnDuplicates: true,
+      },
     ],
-    'react/jsx-max-depth': ['error', { max: 3 }],
+    'react/jsx-max-depth': ['error', { max: 4 }],
     'react/jsx-max-props-per-line': 0, // just code formatting
     'react/jsx-newline': 0, //it is no enough flexible so will be better divide manually
     'react/jsx-no-bind': [
