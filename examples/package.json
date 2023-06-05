@@ -21,7 +21,7 @@
     "react-dom": "17.0.2"
   },
   "devDependencies": {
-    "@lyulyaev-maxim/eslint-config-crazy-strict": "0.1.2",
+    "@lyulyaev-maxim/eslint-config-crazy-strict": "^0.1.3",
     "@lyulyaev-maxim/eslint-config-react-crazy-strict": "^0.0.1",
     "@lyulyaev-maxim/prettier-config": "0.0.0",
     "@lyulyaev-maxim/stylelint-config-crazy-strict": "0.0.0",
