@@ -1,4 +1,4 @@
-const isCI = Boolean(process.env.CI)
+const { isCI, fixable, canBeFixedLater } = require('../utils')
 
 module.exports = {
   rulesOfESLint,
@@ -19,7 +19,7 @@ function rulesOfESLint() {
     'no-constant-condition': 'error',
     'no-constructor-return': 'error',
     'no-control-regex': 'error',
-    'no-debugger': isCI ? 'error' : 0,
+    'no-debugger': fixable,
     'no-dupe-args': 'error',
     'no-dupe-class-members': 0, // replaced to '@typescript-eslint/no-dupe-class-members'
     'no-dupe-else-if': 'error',
@@ -78,12 +78,16 @@ function rulesOfESLint() {
         allow: ['^API_', '^UNSAFE_'],
       },
     ],
-    'capitalized-comments': 0, //FIXME: it sees any commented code as just text; ['error', 'always', { ignoreInlineComments: true, ignoreConsecutiveComments: true  }],
+    'capitalized-comments': 0,
     'class-methods-use-this': ['error', { enforceForClassFields: true }],
-    complexity: ['error', { max: 5 }],
+    complexity: [canBeFixedLater, { max: 5 }],
     'consistent-return': ['error', { treatUndefinedAsUnspecified: false }],
+    /**
+     * Aliases for 'this' are restricted by '@typescript-eslint/no-this-alias'.
+     * This rule enabled only for cases when restriction skipped
+     */
     'consistent-this': ['error', 'self'],
-    curly: ['error', 'multi-or-nest', 'consistent'], //I didn't find algorithm which will be comfortable in all cases
+    curly: [canBeFixedLater, 'multi-or-nest', 'consistent'], //I didn't find algorithm which will be comfortable in all cases
     'default-case': 'error',
     'default-case-last': 'error',
     'default-param-last': 0, // replaced to '@typescript-eslint/default-param-last'
@@ -95,26 +99,30 @@ function rulesOfESLint() {
     'grouped-accessor-pairs': ['error', 'getBeforeSet'],
     'guard-for-in': 'error',
     'id-denylist': 0, //maybe will do later: https://eslint.org/docs/rules/id-denylist
-    'id-length': ['error', { min: 4 }],
+    'id-length': [canBeFixedLater, { min: 2, exceptions: ['_'] }],
     'id-match': 0,
     'init-declarations': 0, //replaced to '@typescript-eslint/init-declarations'
     'max-classes-per-file': 0, //I'm not sure that automation is the right way
     'max-depth': ['error', 3],
     'max-lines': ['error', { max: 300, skipBlankLines: true, skipComments: true }],
-    'max-lines-per-function': ['error', { max: 50, skipBlankLines: true, skipComments: true, IIFEs: false }],
+    'max-lines-per-function': [canBeFixedLater, { max: 50, skipBlankLines: true, skipComments: true, IIFEs: false }],
     'max-nested-callbacks': ['error', 5],
     'max-params': ['error', 5],
     'max-statements': ['error', 10, { ignoreTopLevelFunctions: false }],
     'multiline-comment-style': isCI ? ['error', 'bare-block'] : 0,
     'new-cap': ['error', { newIsCap: true, capIsNew: false, properties: true }],
-    'no-alert': 0,
+    'no-alert': 'error',
     'no-array-constructor': 0, // replaced to @typescript-eslint/no-array-constructor
     'no-bitwise': ['error', { allow: ['~'] }],
     'no-caller': 'error',
     'no-case-declarations': 'error',
     'no-confusing-arrow': 0, //I'm not sure that it improves readability
     'no-console': 0,
-    'no-continue': 'error',
+    /**
+     * Real issue of 'continue' occurs only in using its as "goto".
+     * So it's enough to restrict only 'labels" (with 'no-labels' rule) around 'continue'.
+     */
+    'no-continue': 0,
     'no-delete-var': 'error',
     'no-div-regex': 'error',
     'no-else-return': ['error', { allowElseIf: false }],
@@ -122,7 +130,7 @@ function rulesOfESLint() {
     'no-empty-function': 0, // replaced to '@typescript-eslint/no-empty-function'
     'no-eq-null': 0, //rule 'eqeqeq' fully replaces this
     'no-eval': 'error',
-    'no-extend-native': 0, //probably, including additional no-enumerable methods via Symbol can be useful
+    'no-extend-native': 'error',
     'no-extra-bind': 'error',
     'no-extra-boolean-cast': ['error', { enforceForLogicalOperands: true }],
     'no-extra-label': 'error',
@@ -149,7 +157,7 @@ function rulesOfESLint() {
     'no-new': 'error',
     'no-new-func': 'error',
     'no-new-object': 'error',
-    'no-new-wrappers': 'error',
+    'no-new-wrappers': 0, // extended with 'unicorn/new-for-builtins'
     'no-nonoctal-decimal-escape': 'error',
     'no-octal': 'error',
     'no-octal-escape': 'error',
@@ -162,7 +170,13 @@ function rulesOfESLint() {
     'no-restricted-globals': 0, //I haven't ideas which names are wrong
     'no-restricted-imports': 0, // replaced to '@typescript-eslint/no-restricted-imports'
     'no-restricted-properties': 0, //I haven't ideas which names are wrong
-    'no-restricted-syntax': 0, //TODO: can be useful: https://eslint.org/docs/rules/no-restricted-syntax
+    'no-restricted-syntax': [
+      'error',
+      {
+        selector: 'TSEnumDeclaration',
+        message: 'Prefer union types over enums',
+      },
+    ],
     'no-return-assign': ['error', 'always'],
     'no-return-await': 0, //replaced to '@typescript-eslint/return-await'
     'no-script-url': 'error',
@@ -172,7 +186,7 @@ function rulesOfESLint() {
     'no-ternary': 0,
     'no-throw-literal': 0, //replaced to '@typescript-eslint/no-throw-literal'
     'no-undef-init': 'error',
-    'no-undefined': 'error',
+    'no-undefined': 0,
     'no-underscore-dangle': ['error', { allowFunctionParams: true }],
     'no-unneeded-ternary': ['error', { defaultAssignment: false }],
     'no-unused-expressions': 0, //replaced to '@typescript-eslint/no-unused-expressions'
@@ -194,7 +208,7 @@ function rulesOfESLint() {
     'no-useless-return': 'error',
     'no-var': 'error',
     'no-void': 0, // disabled because 'void' is useful for '@typescript-eslint/no-confusing-void-expression'
-    'no-warning-comments': ['error', { terms: ['temp'], location: 'anywhere' }],
+    'no-warning-comments': isCI ? ['error', { terms: ['temp'], location: 'anywhere' }] : 0,
     'no-with': 'error',
     'object-shorthand': [
       'error',
@@ -207,9 +221,9 @@ function rulesOfESLint() {
     'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
     'prefer-const': ['error', { destructuring: 'any', ignoreReadBeforeAssign: false }],
     'prefer-destructuring': [
-      'error',
+      canBeFixedLater,
       {
-        array: true,
+        array: false, // replace to 'unicorn/no-unreadable-array-destructuring'
         object: true,
       },
       {
@@ -219,7 +233,7 @@ function rulesOfESLint() {
     'prefer-exponentiation-operator': 0,
     'prefer-named-capture-group': 'error',
     'prefer-numeric-literals': 0,
-    'prefer-object-has-own': 0, //TODO: enable it after TypeScript was upgraded to 4.6.0 and target will be 'es2022': 'error',
+    'prefer-object-has-own': canBeFixedLater,
     'prefer-object-spread': 'error',
     'prefer-promise-reject-errors': ['error', { allowEmptyReject: false }],
     'prefer-regex-literals': ['error', { disallowRedundantWrapping: true }],
@@ -229,7 +243,10 @@ function rulesOfESLint() {
     'quote-props': ['error', 'as-needed'],
     radix: ['error', 'as-needed'],
     'require-await': 0, //replaced to '@typescript-eslint/require-await'
-    'require-unicode-regexp': 'error',
+    /**
+     * We need to fix it after case of 'unicorn/better-regex' be fixed
+     */
+    'require-unicode-regexp': canBeFixedLater,
     'require-yield': 'error',
     'sort-imports': 0, //I'm not sure that it improves readability
     'sort-keys': 0, //I'm not sure that it improves readability

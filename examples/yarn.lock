@@ -271,9 +271,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lyulyaev-maxim/eslint-config-crazy-strict@npm:^0.1.6":
-  version: 0.1.6
-  resolution: "@lyulyaev-maxim/eslint-config-crazy-strict@npm:0.1.6"
+"@lyulyaev-maxim/eslint-config-crazy-strict@npm:^0.1.7":
+  version: 0.1.7
+  resolution: "@lyulyaev-maxim/eslint-config-crazy-strict@npm:0.1.7"
   dependencies:
     eslint-import-resolver-typescript: ^2.5.0
     eslint-plugin-import: ^2.27.5
@@ -285,7 +285,7 @@ __metadata:
     "@typescript-eslint/parser": ^5.59.8
     eslint: ^8.7.0
     typescript: ^5.0.4
-  checksum: 19891cbf615c89ab12679c48bef770cd10cafff11c7cf09fe289feebc64538a40c782e8d50eb1aaef97d5686b12296b0763d9cc174893fbe15648035acb543a9
+  checksum: 1723149fa7495d7db2206056cd0d917312c77765eb8c83d6556e95825ef80fecd365316b9379131294af72b70226805ba81ddc5787227f17e6c127a75e72a28e
   languageName: node
   linkType: hard
 
@@ -318,7 +318,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lyulyaev-maxim/styleguide-examples@workspace:."
   dependencies:
-    "@lyulyaev-maxim/eslint-config-crazy-strict": ^0.1.6
+    "@lyulyaev-maxim/eslint-config-crazy-strict": ^0.1.7
     "@lyulyaev-maxim/eslint-config-react-crazy-strict": ^0.0.1
     "@lyulyaev-maxim/prettier-config": 0.0.0
     "@lyulyaev-maxim/stylelint-config-crazy-strict": 0.0.0
