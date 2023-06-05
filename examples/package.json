@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@lyulyaev-maxim/eslint-config-crazy-strict": "0.0.7",
-    "@lyulyaev-maxim/eslint-config-react-crazy-strict": "0.0.0",
+    "@lyulyaev-maxim/eslint-config-react-crazy-strict": "^0.0.1",
     "@lyulyaev-maxim/prettier-config": "0.0.0",
     "@lyulyaev-maxim/stylelint-config-crazy-strict": "0.0.0",
     "@lyulyaev-maxim/typescript-config-crazy-strict": "0.0.1",

@@ -238,19 +238,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lyulyaev-maxim/eslint-config-react-crazy-strict@npm:0.0.0":
-  version: 0.0.0
-  resolution: "@lyulyaev-maxim/eslint-config-react-crazy-strict@npm:0.0.0"
+"@lyulyaev-maxim/eslint-config-react-crazy-strict@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "@lyulyaev-maxim/eslint-config-react-crazy-strict@npm:0.0.1"
   dependencies:
-    eslint-plugin-react: ^7.28.0
-    eslint-plugin-react-hooks: ^4.3.0
+    eslint-plugin-react: ^7.32.2
+    eslint-plugin-react-hooks: ^4.6.0
   peerDependencies:
     "@typescript-eslint/eslint-plugin": ^5.10.0
     "@typescript-eslint/parser": ^5.10.0
     eslint: ^8.7.0
     react: ^17.0.2
     typescript: ^4.5.5
-  checksum: 06418a2b1780446876d3fe065744308ad1ddf610a6ff136f8b7f8f92b70239d08efbc3e05fc2ec396268ddc71dcb9263c6afa2dd6e9accef999d1dead4740be6
+  checksum: 4ffc8a80684af4c532f5694f80d22e846f62bf9d21a82b61fcfaea9b1be0e3a3c6015582fc76ef28b011d508e4c7740f73c1445ac0b63ce6ef717f07922844dd
   languageName: node
   linkType: hard
 
@@ -268,7 +268,7 @@ __metadata:
   resolution: "@lyulyaev-maxim/styleguide-examples@workspace:."
   dependencies:
     "@lyulyaev-maxim/eslint-config-crazy-strict": 0.0.7
-    "@lyulyaev-maxim/eslint-config-react-crazy-strict": 0.0.0
+    "@lyulyaev-maxim/eslint-config-react-crazy-strict": ^0.0.1
     "@lyulyaev-maxim/prettier-config": 0.0.0
     "@lyulyaev-maxim/stylelint-config-crazy-strict": 0.0.0
     "@lyulyaev-maxim/typescript-config-crazy-strict": 0.0.1
@@ -1236,7 +1236,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-hooks@npm:^4.3.0":
+"eslint-plugin-react-hooks@npm:^4.6.0":
   version: 4.6.0
   resolution: "eslint-plugin-react-hooks@npm:4.6.0"
   peerDependencies:
@@ -1245,7 +1245,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react@npm:^7.28.0":
+"eslint-plugin-react@npm:^7.32.2":
   version: 7.32.2
   resolution: "eslint-plugin-react@npm:7.32.2"
   dependencies:
