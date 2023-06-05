@@ -33,3 +33,4 @@ But fixing for these rules in during development may be annoying, so I to enable
 * [eslint-plugin-unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn)
 * [eslint-plugin-sonarjs](https://github.com/SonarSource/eslint-plugin-sonarjs)
 * [eslint-plugin-import](https://github.com/import-js/eslint-plugin-import)
+* [eslint-plugin-jsdoc](https://github.com/gajus/eslint-plugin-jsdoc)
