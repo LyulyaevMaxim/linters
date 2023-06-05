@@ -2,7 +2,6 @@ const path = require('path'),
   root = path.resolve(__dirname, './')
 
 const { rulesOfESLint } = require('./rules/rulesOfESLint'),
-  { rulesOfReact } = require('./rules/rulesOfReact'),
   { rulesOfTypeScript } = require('./rules/rulesOfTypeScript'),
   { rulesOfPluginImport } = require('./rules/rulesOfPluginImport'),
   { rulesOfSonar } = require('./rules/rulesOfSonar')
@@ -29,28 +28,16 @@ module.exports = {
           jsx: true,
         },
       },
-      plugins: ['@typescript-eslint', 'react', 'import', 'sonarjs', 'react-hooks'],
+      plugins: ['@typescript-eslint', 'import', 'sonarjs'],
       rules: {
         ...rulesOfESLint(),
-        ...rulesOfReact(),
         ...rulesOfTypeScript(),
         ...rulesOfPluginImport(),
         ...rulesOfSonar(),
-        'react-hooks/rules-of-hooks': 'error',
-        'react-hooks/exhaustive-deps': 'error',
       },
     },
   ],
   settings: {
-    react: {
-      version: 'detect',
-    },
-    linkComponents: [
-      // Components used as alternatives to <a> for linking, eg. <Link to={ url } />
-      'Hyperlink',
-      { name: 'Link', linkAttribute: 'to' },
-      { name: 'NavLink', linkAttribute: 'to' },
-    ],
     'import/resolver': {
       typescript: {
         project: root,

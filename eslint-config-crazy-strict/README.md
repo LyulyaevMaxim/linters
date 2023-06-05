@@ -30,7 +30,5 @@ But fixing for these rules in during development may be annoying, so I to enable
 * [ESLint](https://eslint.org/docs/rules/)
 * [TypeScript-ESLint](https://typescript-eslint.io/rules/)
 * [TSConfig](https://www.typescriptlang.org/tsconfig)
-* [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react)
-* [eslint-plugin-react-hooks](https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks)
 * [eslint-plugin-sonarjs](https://github.com/SonarSource/eslint-plugin-sonarjs)
 * [eslint-plugin-import](https://github.com/import-js/eslint-plugin-import)
