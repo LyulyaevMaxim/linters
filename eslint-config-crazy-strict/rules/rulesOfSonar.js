@@ -1,4 +1,4 @@
-const isCI = Boolean(process.env.CI)
+const { fixable } = require('../utils')
 
 module.exports = {
   rulesOfSonar,
@@ -40,7 +40,7 @@ function rulesOfSonar() {
     'sonarjs/prefer-immediate-return': 'error',
     'sonarjs/prefer-object-literal': 'error',
     'sonarjs/prefer-single-boolean-return': 0, //in current moment, it works equally 'no-else-return'
-    'sonarjs/prefer-while': isCI ? 'error' : 0,
+    'sonarjs/prefer-while': fixable,
   }
 
   return { ...bugDetection, ...codeSmellDetection }
