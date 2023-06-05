@@ -19,5 +19,5 @@ module.exports = {
       jsx: true,
     },
   },
-  extends: ['@lyulyaev-maxim/eslint-config-crazy-strict'],
+  extends: ['@lyulyaev-maxim/eslint-config-crazy-strict', '@lyulyaev-maxim/eslint-config-react-crazy-strict'],
 }

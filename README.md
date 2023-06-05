@@ -13,6 +13,7 @@ And so I just parsed all rules of some useful plugins, then read description for
 
 This repository used as monorepo, each package has its own `README` and documentation describing usage:
 * [eslint-config-crazy-strict](./eslint-config-crazy-strict)
+* [eslint-config-react-crazy-strict](./eslint-config-react-crazy-strict)
 * [typescript-config-crazy-strict](./typescript-config-crazy-strict)
 * [prettier-config](./prettier-config)
 

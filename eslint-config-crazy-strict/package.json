@@ -1,8 +1,8 @@
 {
   "name": "@lyulyaev-maxim/eslint-config-crazy-strict",
   "author": "Lyulyaev Maxim",
-  "version": "0.0.6",
-  "description": "Manual configuration for Eslint on projects with TypeScript and React",
+  "version": "0.0.7",
+  "description": "Manual configuration for Eslint on projects with JavaScript and TypeScript",
   "main": ".eslintrc.js",
   "scripts": {
     "publish": "yarn npm publish --access public"
@@ -10,8 +10,6 @@
   "dependencies": {
     "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-react": "^7.28.0",
-    "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-sonarjs": "^0.11.0"
   },
   "peerDependencies": {
