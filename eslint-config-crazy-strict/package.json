@@ -1,7 +1,7 @@
 {
   "name": "@lyulyaev-maxim/eslint-config-crazy-strict",
   "author": "Lyulyaev Maxim",
-  "version": "0.0.7",
+  "version": "0.1.1",
   "description": "Manual configuration for Eslint on projects with JavaScript and TypeScript",
   "main": ".eslintrc.js",
   "scripts": {
@@ -10,7 +10,8 @@
   "dependencies": {
     "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-sonarjs": "^0.11.0"
+    "eslint-plugin-sonarjs": "^0.11.0",
+    "eslint-plugin-unicorn": "^47.0.0"
   },
   "peerDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.10.0",

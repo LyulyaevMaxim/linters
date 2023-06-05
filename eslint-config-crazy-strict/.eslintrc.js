@@ -4,6 +4,7 @@ const path = require('path'),
 const { rulesOfESLint } = require('./rules/rulesOfESLint'),
   { rulesOfTypeScript } = require('./rules/rulesOfTypeScript'),
   { rulesOfPluginImport } = require('./rules/rulesOfPluginImport'),
+  { rulesOfUnicorn } = require('./rules/rulesOfUnicorn'),
   { rulesOfSonar } = require('./rules/rulesOfSonar')
 
 module.exports = {
@@ -28,11 +29,12 @@ module.exports = {
           jsx: true,
         },
       },
-      plugins: ['@typescript-eslint', 'import', 'sonarjs'],
+      plugins: ['@typescript-eslint', 'import', 'unicorn', 'sonarjs'],
       rules: {
         ...rulesOfESLint(),
         ...rulesOfTypeScript(),
         ...rulesOfPluginImport(),
+        ...rulesOfUnicorn(),
         ...rulesOfSonar(),
       },
     },
