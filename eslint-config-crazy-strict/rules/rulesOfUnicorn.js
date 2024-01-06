@@ -90,7 +90,7 @@ function rulesOfUnicorn() {
     'unicorn/no-thenable': 'error',
     'unicorn/no-this-assignment': 0, // used via '@typescript-eslint/no-this-alias'
     'unicorn/no-typeof-undefined': 'error',
-    'unicorn/no-unnecessary-await': 'error',
+    'unicorn/no-unnecessary-await': 0, // '@typescript-eslint/await-thenable' covers it
     'unicorn/no-unreadable-array-destructuring': canBeFixedLater,
     'unicorn/no-unreadable-iife': 'error',
     'unicorn/no-unsafe-regex': canBeFixedLater,
